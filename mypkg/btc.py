@@ -1,3 +1,5 @@
+# SPSX-FileCopyrightText: 2024 Taisei Suzuki
+# SPDX-License-Identifier: BSD-3-Clause
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
@@ -8,7 +10,7 @@ class BTCPublisher(Node):
     def __init__(self):
         super().__init__('btc_publisher')
         self.publisher_ = self.create_publisher(String, 'btc_price', 10)
-        self.create_timer(3.0, self.publish_price)
+        self.create_timer(5.0, self.publish_price)
 
     def publish_price(self):
         try:
@@ -32,3 +34,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
