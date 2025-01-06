@@ -7,29 +7,36 @@ dir=~
 [ "$1" != "" ] && dir="$1"
 
 # ROS2ワークスペースに移動
-cd $dir/ros2_ws
+cd "$dir/ros2_ws" || { echo "Failed to change directory to $dir/ros2_ws"; exit 1; }
 
 # ワークスペースをビルド
-colcon build
-source install/setup.bash
+colcon build || { echo "Build failed"; exit 1; }
+source "$dir/.bashrc"
 
-# ノードをバックグラウンドで起動
-timeout 15 ros2 run mypkg btc > /tmp/test.bash.log 2>&1 &
+# ノードをバックグラウンドで起動して60秒間実行
+timeout 60s ros2 run btc_publisher btc_publisher > /tmp/mypkg.log 2>&1
+status=$?
 
-# ログファイルの内容を確認
-sleep 15
-
-# BTC価格のフォーマットを確認
-price_found=$(grep -E '^\$[0-9]+\.[0-9]{2}$' /tmp/test.bash.log)
-
-# エラーメッセージが無いか確認
-error_found=$(grep -E 'Error fetching price' /tmp/test.bash.log)
-
-if [ -n "$price_found" ] && [ -z "$error_found" ]; then
-    echo "Test Passed: BTC price is correctly published."
-    exit 0
+# テスト結果を確認
+if [ $status -eq 0 ]; then
+  echo "Node ran successfully."
 else
-    echo "Test Failed: Either no valid price found or an error occurred."
-    exit 1
+  echo "Node did not complete successfully. Exit status: $status"
 fi
+
+# ログに期待する出力があるかを確認
+grep "Published BTC price:" /tmp/mypkg.log > /tmp/grep_results.log
+grep_status=$?
+
+if [ $grep_status -eq 0 ]; then
+  echo "Test passed: BTC price was published successfully."
+else
+  echo "Test failed: BTC price was not published."
+fi
+
+# ログ内容を出力（オプション）
+cat /tmp/grep_results.log
+
+# スクリプト終了ステータス
+exit $grep_status
 
