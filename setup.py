@@ -14,7 +14,7 @@ setup(
         ('share/' + package_name, ['package.xml']),
         (os.path.join('share', package_name), glob('launch/*.launch.py'))
     ],
-    install_requires=['setuptools'],
+    install_requires=['setuptools', 'yfinance'],
     zip_safe=True,
     maintainer='Taisei Suzuki',
     maintainer_email='iseita31kamekichi@gmail.com',
@@ -24,7 +24,7 @@ setup(
     entry_points={
         'console_scripts': [
             'talker = mypkg.talker:main',
-            'listener = mypkg.listener:main',
         ],
     },
 )
+
