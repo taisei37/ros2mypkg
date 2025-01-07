@@ -7,18 +7,25 @@
 - このROS2パッケージはyfinance ライブラリを用いてYahoo！ファイナンスのビットコインの価格を取得し表示する機能を持ちます。
 
 ## 使用方法
-- yfinanceを使用しているため、最初にこのライブラリをインストールする
- '''pip install yfinance'''
--- 以下のコマンドでビットコインの価格を表示できます
+- このパッケージはyfinanceを使用しているため、最初にこのライブラリをインストールする必要があります。
+
+```pip install yfinance
+
+- 以下のコマンドでビットコインの価格を表示できます
 - パブリッシュ方法①
-- 一つ目の端末で以下のコマンドを実行
- '''ros2 run mypkg btc'''
+ 一つ目の端末で以下のコマンドを実行
+
+```ros2 run mypkg btc
+
 - 二つ目の端末で以下のコマンドを実行
- '''ros2 topic echo /btc_price'''
+
+```ros2 topic echo /btc_price
 
 - パブリッシュ方法②
--- 以下のコマンドで\\btc\\と\\btclistener\\を同時に実行できます
- '''ros2 launch mypkg btc_listen.launch.py'''
+
+-- 以下のコマンドで```btc```と```btclistener```を同時に実行できます
+
+```ros2 launch mypkg btc_listen.launch.py```
 
 ## 必要なソフトウェア
 - python
