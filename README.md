@@ -9,24 +9,32 @@
 ## 使用方法
 - このパッケージはyfinanceを使用しているため、最初にこのライブラリをインストールする必要があります。
 
-``pip install yfinance``
+```
+pip install yfinance
+``
 
 - 以下のコマンドでビットコインの価格を表示できます
 
 - パブリッシュ方法①
  一つ目の端末で以下のコマンドを実行
 
-``ros2 run mypkg btc``
+```
+ros2 run mypkg btc
+```
 
 - 二つ目の端末で以下のコマンドを実行
 
-``ros2 topic echo /btc_price``
+```
+ros2 topic echo /btc_price
+```
 
 - パブリッシュ方法②
 
--- 以下のコマンドで`btc`と`btclistener`を同時に実行できます
+-- 以下のコマンドで``btc``と``btclistener``を同時に実行できます
 
-``ros2 launch mypkg btc_listen.launch.py``
+```
+ros2 launch mypkg btc_listen.launch.py
+```
 
 ## 必要なソフトウェア
 - python
