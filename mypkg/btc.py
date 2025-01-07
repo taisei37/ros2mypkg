@@ -4,6 +4,7 @@ import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
 import yfinance as yf
+from datetime import datetime
 
 
 class BTCPublisher(Node):
@@ -15,12 +16,12 @@ class BTCPublisher(Node):
     def publish_price(self):
         try:
             ticker = yf.Ticker("BTC-USD")
-            history = ticker.history(period="1d", interval="1m")
-            if not history.empty:
-                price = history["Close"].iloc[-1]
-                self.publisher_.publish(String(data=f"${price:.2f}"))
+            current_price = ticker.fast_info['last_price']
+            now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            message = f"{now}, ${current_price:.2f}"
+            self.publisher_.publish(String(data=message))
         except Exception as e:
-            print(f"Error fetching price: {e}")
+            self.get_logger().error(f"Error fetching latest price: {e}")
 
 
 def main():
