@@ -1,16 +1,25 @@
- name: test
- on: push
- jobs:
- 　test:
-     runs-on: ubuntu-22.04
-     strategy:
-       matrix:
-         python-version: ["3.7","3.8","3.9","3.10"]
-     container: ryuichiueda/ubuntu22.04-ros2:latest
-     steps:
-       - uses: actions/checkout@v2
-       - name: build and test
-         run: |
-           rsync -av ./ /root/ros2_ws/src/mypkg/
-           cd /root/ros2_ws
-           bash -xv ./src/mypkg/test/test.bash /root
+name: test
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        python-version: ["3.7", "3.8", "3.9", "3.10"]
+    container: ryuichiueda/ubuntu22.04-ros2:latest
+    steps:
+      - name: リポジトリをチェックアウト
+        uses: actions/checkout@v2
+
+      - name: Python のセットアップ
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: ROS2 パッケージのビルドとテスト
+        run: |
+          rsync -av ./ /root/ros2_ws/src/mypkg/
+          cd /root/ros2_ws
+          source /opt/ros/rolling/setup.bash
+          bash -xv ./src/mypkg/test/test.bash /root
+
