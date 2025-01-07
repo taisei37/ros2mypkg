@@ -9,8 +9,13 @@ jobs:
     container: ryuichiueda/ubuntu22.04-ros2:latest
     steps:
       - uses: actions/checkout@v2
+      - name: Install dependencies
+         run: |
+    sudo apt update
+    sudo apt install yfinance
+
       - name: build and test
-        run: |
+         run: |
           rsync -av ./ /root/ros2_ws/src/mypkg/
           cd /root/ros2_ws
           source /opt/ros/rolling/setup.bash
