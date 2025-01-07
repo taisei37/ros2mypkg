@@ -38,12 +38,12 @@ ros2 launch mypkg btc_listen.launch.py
 
 ## 必要なソフトウェア
 - python
- -テスト実行中
+ -テスト現在実行中
 
 ## テスト環境
 - Ubuntu 20.04 LTS
 
-##ライセンス
+## ライセンス
 - このソフトウェアパッケージは３条項BSDライセンスの下、再頒布および使用が許可されてされています。
 
 © 2024 Taisei Suzuki
