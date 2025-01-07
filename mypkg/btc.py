@@ -10,7 +10,7 @@ class BTCPublisher(Node):
     def __init__(self):
         super().__init__('btc_publisher')
         self.publisher_ = self.create_publisher(String, 'btc_price', 10)
-        self.create_timer(60.0, self.publish_price)  # 60秒ごとに実行
+        self.create_timer(60.0, self.publish_price)
 
     def publish_price(self):
         try:
@@ -20,20 +20,19 @@ class BTCPublisher(Node):
                 price = history["Close"].iloc[-1]
                 self.publisher_.publish(String(data=f"${price:.2f}"))
         except Exception as e:
-            # 例外発生時のログを出力
             print(f"Error fetching price: {e}")
 
 
 def main():
-    rclpy.init()  # ROS 2の初期化
-    node = BTCPublisher()  # ノードを作成
+    rclpy.init()
+    node = BTCPublisher()
     try:
-        rclpy.spin(node)  # ノードを実行
+        rclpy.spin(node)
     except KeyboardInterrupt:
         pass
     finally:
-        node.destroy_node()  # ノードの破棄
-        rclpy.shutdown()  # ROS 2のシャットダウン
+        node.destroy_node()
+        rclpy.shutdown()
 
 
 if __name__ == "__main__":

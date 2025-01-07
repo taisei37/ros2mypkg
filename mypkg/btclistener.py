@@ -1,3 +1,5 @@
+# SPSX-FileCopyrightText: 2024 Taisei Suzuki
+# SPDX-License-Identifier: BSD-3-Clause
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
@@ -16,12 +18,12 @@ def main():
     rclpy.init()
     node = BTCListener()
     try:
-        rclpy.spin(node)  # ノードを実行してメッセージを待機
+        rclpy.spin(node)
     except KeyboardInterrupt:
         pass
     finally:
-        node.destroy_node()  # ノードの破棄
-        rclpy.shutdown()  # ROS2のシャットダウン
+        node.destroy_node()
+        rclpy.shutdown()
 
 
 if __name__ == "__main__":
