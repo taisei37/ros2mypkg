@@ -1,6 +1,10 @@
 #!/bin/bash
+
 # SPSX-FileCopyrightText: 2024 Taisei Suzuki
 # SPDX-License-Identifier: BSD-3-Clause
+
+# Source the ROS 2 environment
+source /opt/ros/${ROS_DISTRO}/setup.bash
 
 # デフォルトのディレクトリ設定
 dir=~
