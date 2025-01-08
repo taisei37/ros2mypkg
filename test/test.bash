@@ -11,8 +11,11 @@ colcon build
 source $dir/.bashrc
 
 
-timeout 65 ros2 launch mypkg btc_listen.launch.py > /tmp/mypkg.log
+timeout 65 ros2 launch mypkg btc_listen.launch.py > /tmp/mypkg.log &
 
-cat /tmp/mypkg.log |
- grep -E btc_price
+
+
+cat /tmp/mypkg.log | grep -E btc_price
+
+kill %1
 
