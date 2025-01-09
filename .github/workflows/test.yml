@@ -7,10 +7,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
-         run: |
     sudo apt update
     sudo apt install yfinance
-
       - name: build and test
          run: |
           rsync -av ./ /root/ros2_ws/src/mypkg/
