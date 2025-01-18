@@ -1,0 +1,4 @@
+[console_scripts]
+btc = mypkg.btc:main
+btclistener = mypkg.btclistener:main
+

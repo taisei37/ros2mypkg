@@ -1,3 +1,5 @@
+# SPSX-FileCopyrightText: 2024 Taisei Suzuki
+# SPDX-License-Identifier: BSD-3-Clause
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
@@ -14,11 +16,10 @@ class BTCPublisher(Node):
     def publish_price(self):
         try:
             ticker = yf.Ticker("BTC-USD")
-            current_price = ticker.history(period="1d")['Close'][0]  # 最新の終値を取得
+            current_price = ticker.fast_info['last_price']
             now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             message = f"{now}, ${current_price:.2f}"
             self.publisher_.publish(String(data=message))
-            self.get_logger().info(f"Published message: {message}")
         except Exception as e:
             self.get_logger().error(f"Error fetching latest price: {e}")
 

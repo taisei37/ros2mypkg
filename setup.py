@@ -24,7 +24,8 @@ setup(
     entry_points={
         'console_scripts': [
             'btc = mypkg.btc:main',
-            'btclistener = mypkg.btclistener:main'
+            'btclistener = mypkg.btclistener:main',
+'btc_publisher = mypkg.btc_publisher:main',
         ],
     },
 )

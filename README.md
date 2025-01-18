@@ -17,6 +17,7 @@ pip install yfinance
 
 - パブリッシュ方法①
  一つ目の端末で以下のコマンドを実行
+ btc_priceトピックへの価格送信
 
 ```
 ros2 run mypkg btc
@@ -27,14 +28,12 @@ ros2 run mypkg btc
 ```
 ros2 topic echo /btc_price
 ```
-
-- パブリッシュ方法②
-
--- 以下のコマンドで``btc``と``btclistener``を同時に実行できます
-
+- 出力例(2025年1月1日21時30分30秒の場合)
 ```
-ros2 launch mypkg btc_listen.launch.py
+data: 2025-01-01 21:30:30, $148415.25
+---
 ```
+
 
 ## 必要なソフトウェア
 - python
