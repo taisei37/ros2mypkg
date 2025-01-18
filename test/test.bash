@@ -19,7 +19,13 @@ ros_pid=$!
 sleep 15
 
 # トピックを監視し、出力をログに記録
-timeout 10 ros2 topic echo /btc_price > /tmp/mypkg.log
+timeout 65 ros2 topic echo /btc_price --qos-profile sensor_data> /tmp/mypkg.log
+if [ -s /tmp/mypkg.log ]; then
+    echo "データ取得成功："
+    cat /tmp/mypkg.log
+else
+    echo "エラー: トピックデータが取得できませんでした。"
+fi
 
 #ログの内容を表示
 cat /tmp/mypkg.log
