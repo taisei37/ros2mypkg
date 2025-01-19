@@ -6,24 +6,8 @@ jobs:
     container: ryuichiueda/ubuntu22.04-ros2:latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install ROS2 Foxy
-        run: |
-          sudo apt update
-          sudo apt install -y curl gnupg2 lsb-release
-          sudo curl -sSL http://packages.ros.org/ros2/ubuntu/ros2.asc | sudo apt-key add -
-          sudo sh -c 'echo "deb [arch=amd64] http://packages.ros.org/ros2/ubuntu $(lsb_release -c | awk "{print $2}") main" > /etc/apt/sources.list.d/ros2-latest.list'
-          sudo apt update
-          sudo apt install -y ros-foxy-desktop
-          sudo apt install -y python3-colcon-common-extensions
-          source /opt/ros/foxy/setup.bash
-      - name: Install dependencies
-        run: |
-          sudo apt update -y
-          sudo apt install -y python3-pip
-          pip3 install yfinance
       - name: Build and test
         run: |
           rsync -av ./ /root/ros2_ws/src/ros2mypkg/
           cd /root/ros2_ws
           bash -xv ./src/mypkg/test/test.bash /root
-
