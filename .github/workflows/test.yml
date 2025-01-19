@@ -6,6 +6,10 @@ jobs:
     container: ryuichiueda/ubuntu22.04-ros2:latest
     steps:
       - uses: actions/checkout@v2
+      - name: Set up ROS2 environment
+        run: |
+          source /opt/ros/foxy/setup.bash
+          sudo apt update && sudo apt install -y python3-colcon-common-extensions
       - name: Install dependencies
         run: |
           apt update -y

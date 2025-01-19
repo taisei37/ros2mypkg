@@ -19,7 +19,7 @@ else
 fi
 
 # ROS2 ノードをバックグラウンドで起動
-timeout 65 ros2 run mypkg btc &
+timeout 65 ros2 run ros2mypkg btc &
 ros_pid=$!
 
 # ノードが起動してメッセージを送信するのを待つ
@@ -30,10 +30,10 @@ timeout 50 ros2 topic echo /btc_price --qos-profile sensor_data > /tmp/mypkg.log
 
 # ログの内容を表示
 if grep -q "Error" /tmp/mypkg.log; then
-  echo "Error detected in /btc_price output"
+  echo "エラーを検出"
   exit 1
 else
-  echo "Test passed successfully"
+  echo "テスト成功"
   cat /tmp/mypkg.log
 fi
 
