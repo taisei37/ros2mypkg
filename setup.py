@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 import os
 from glob import glob
 
-package_name = 'mypkg'
+package_name = 'ros2mypkg'
 
 setup(
     name=package_name,
@@ -23,9 +23,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'btc = mypkg.btc:main',
-            'btclistener = mypkg.btclistener:main',
-'btc_publisher = mypkg.btc_publisher:main',
+            'btc = ros2mypkg.btc:main',
         ],
     },
 )
