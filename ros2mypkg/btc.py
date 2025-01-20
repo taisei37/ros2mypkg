@@ -1,7 +1,7 @@
-# SPDX-FileCopyrightText: 2024 Taisei Suzuki
+# SPDX-FileCopyrightText: 2025 Taisei Suzuki
 # SPDX-License-Identifier: BSD-3-Clause
 import rclpy
-from rclpy.node import Node  # Nodeクラスをインポート
+from rclpy.node import Node
 from std_msgs.msg import String
 import yfinance as yf
 from datetime import datetime

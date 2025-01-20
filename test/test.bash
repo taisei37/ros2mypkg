@@ -1,5 +1,5 @@
 #!/bin/bash
-# SPDX-FileCopyrightText: 2024 Taisei Suzuki
+# SPDX-FileCopyrightText: 2025 Taisei Suzuki
 # SPDX-License-Identifier: BSD-3-Clause
 
 # 作業ディレクトリの設定
