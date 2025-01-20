@@ -1,3 +1,4 @@
+[![test](https://github.com/taisei37/ros2mypkg/actions/workflows/test.yml/badge.svg)](https://github.com/taisei37/ros2mypkg/actions/workflows/test.yml)
 #robosys2024
 ロボットシステム学授業用(課題2)
 # ビットコインの価格を表示
@@ -15,7 +16,8 @@ pip install yfinance
 
 - 以下のコマンドでビットコインの価格を表示できます
 
-- パブリッシュ方法①
+- パブリッシュ方法
+
  一つ目の端末で以下のコマンドを実行
  btc_priceトピックへの価格送信
 
