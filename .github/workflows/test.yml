@@ -24,7 +24,7 @@ jobs:
           rsync -av ./ /root/ros2_ws/src/ros2mypkg/
           cd /root/ros2_ws
           colcon build
-          source install/setup.bash
+  
 
       # テストスクリプトを実行
       - name: Run tests
