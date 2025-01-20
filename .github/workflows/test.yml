@@ -6,10 +6,23 @@ jobs:
     container: ryuichiueda/ubuntu22.04-ros2:latest
     steps:
       - uses: actions/checkout@v2
-      - name: Build and test
+        
+# Pythonの依存関係をインストール
+      - name: Install Python dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install yfinance
+
+      # ROS 2パッケージをビルド
+      - name: Build ROS2 package
         run: |
           rsync -av ./ /root/ros2_ws/src/ros2mypkg/
           cd /root/ros2_ws
-          python3 -m pip install --upgrade pip
-          pip install yfinance
+          colcon build
+          source install/setup.bash
+
+      # テストスクリプトを実行
+      - name: Run tests
+        run: |
+          cd /root/ros2_ws
           bash -xv ./src/ros2mypkg/test/test.bash /root
