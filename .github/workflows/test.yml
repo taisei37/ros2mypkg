@@ -6,6 +6,11 @@ jobs:
     container: ryuichiueda/ubuntu22.04-ros2:latest
     steps:
       - uses: actions/checkout@v2
+ 
+# pipをインストール
+      - name: Install pip
+        run: |
+          apt-get update && apt-get install -y python3-pip
         
 # Pythonの依存関係をインストール
       - name: Install Python dependencies
